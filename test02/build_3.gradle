@@ -1,0 +1,19 @@
+
+// 任务间通过 API 控制、交互
+
+task taskHello {
+    println "taskHello -- doLast1"
+}
+
+// taskHello.doFirst {
+//     println("taskHello -- doFirst1")
+// }
+
+taskHello.doLast {
+    println("taskHello -- doLast222")
+    println project.hasProperty("taskHello")
+}
+
+taskHello.doFirst {
+    println("taskHello -- doFirst1")
+}

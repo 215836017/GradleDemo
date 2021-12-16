@@ -1,0 +1,17 @@
+
+//  Hello World, Hello  Gradle
+
+task hello{
+    doLast{
+        println "Hello Gradle"
+    }
+}
+
+task wrapper(type: Wrapper){
+    gradleVersion = '7.1'
+    archiveBase = 'GRADLE_USER_HOME'
+    archivePath = 'wrapper/dists'
+    distributionBase = 'GRADLE_USER_HOME"'
+    distributionPath = 'wrapper/dists'
+    distributionUrl = 'http\://services.gradle.org/distributions/gradle-7.1-all.zip'
+}

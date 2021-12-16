@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+
+// 测试自定义属性
+sourceSets.all {
+    ext.resourcesDir = null
+}
+
+sourceSets {
+    main {
+        resourcesDir = "main/res"
+    }
+
+    test {
+        resourcesDir = "test/res"
+    }
+}
+
+task taskCustomProperty {
+    sourceSets.each {
+        println("${it.name}的 resourcesDir 是：${it.resourcesDir}")
+    }
+}
+

@@ -1,0 +1,28 @@
+
+// 任务依赖
+
+task taskHello{
+    doFirst {
+        println "Hello"
+    }
+}
+
+task taskWorld{
+    doLast { 
+        println "World"
+    }
+}
+
+task taskMain(dependsOn: taskHello){
+    doLast {
+        println("task -- main")
+    }
+}
+
+task taskMultiMain{
+    dependsOn taskHello, taskWorld
+    doLast {
+        println("task -- taskMultiMain")
+    }
+}
+

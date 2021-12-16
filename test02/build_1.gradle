@@ -1,0 +1,22 @@
+
+// 创建任务
+
+task customTask() {
+    doFirst {
+        println("customTask -- doFirst")
+    }
+
+    doLast {
+        println("customTask -- doLast")
+    }
+}
+
+tasks.create("customeTask2"){
+    doFirst {
+        println("customTask2 -- doFirst")
+    }
+
+    doLast {
+        println("customTask2 -- doLast")
+    }
+}

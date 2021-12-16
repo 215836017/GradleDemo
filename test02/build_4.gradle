@@ -1,0 +1,13 @@
+
+// 自定义属性
+
+ext.age = 18
+ext {
+    phone = 13144445555
+    address = "beiJing"
+}
+task taskExt {
+    println "年龄是: ${age}"
+    println "电话是: ${phone}"
+    println "地址是: ${address}"
+}
