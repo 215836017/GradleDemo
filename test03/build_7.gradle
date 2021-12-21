@@ -1,0 +1,10 @@
+
+// 任务的弃用和禁用
+
+task taskEnable{
+    doLast{
+        println "test -- task taskEnable"
+    }
+}
+
+taskEnable.enabled = false

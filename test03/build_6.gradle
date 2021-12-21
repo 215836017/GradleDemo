@@ -1,0 +1,23 @@
+
+// 任务排序
+
+task taskOrder1{
+    doFirst{
+        println "<< taskOrder1 doFirst 的打印"
+    }
+    doLast{
+        println "<< taskOrder1 doLast 的打印"
+    }
+}
+
+task taskOrder2{
+    doFirst{
+        println "<< taskOrder2 doFirst 的打印"
+    }
+    doLast{
+        println "<< taskOrder2 doLast 的打印"
+    }
+}
+
+// taskOrder1.shouldRunAfter(taskOrder2)  // 注释1
+taskOrder1.mustRunAfter(taskOrder2)    // 注释2

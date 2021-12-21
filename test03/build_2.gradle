@@ -1,0 +1,28 @@
+
+// 多种方式访问任务
+
+task exeTask1
+exeTask1.doLast {
+    println "exeTask1.doLast"
+}
+
+task exeTask2
+tasks['exeTask2'].doLast {
+    println "exeTask2.doLast"
+}
+
+task exeTask3
+tasks['exeTask3'].doLast {
+    println tasks.findByPath(':exeTask3')
+    println tasks.findByPath(':exeTaskXX')
+    println tasks.getByPath(':exeTask3')
+    println tasks.getByPath(':exeTaskXX')
+}
+
+task exeTask4
+tasks['exeTask4'].doLast {
+    println tasks.findByName('exeTask4')
+    println tasks.findByName('exeTaskXX')
+    println tasks.getByName('exeTask4')
+    println tasks.getByName('exeTaskXX')
+}

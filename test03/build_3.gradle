@@ -1,0 +1,10 @@
+
+// 任务分组和描述
+
+def Task myTask = task exeTaskGroup
+myTask.group = BasePlugin.BUILD_GROUP
+myTask.description = "这是一个测试任务的描述"
+
+myTask.doLast {
+    println "group:${group}, desc = ${description}"
+}

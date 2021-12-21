@@ -1,0 +1,13 @@
+
+// << 操作符
+
+// 在 gradle 5.0及其以后版本中， &lt;&lt; 已经过时了，即（<<），是推荐使用doLast 来替代的
+// task(taskOperater) << {
+//     println "<< 操作符的打印"
+// }
+
+task taskOperater{
+    doLast{
+        println "<< doLast 的打印"
+    }
+}

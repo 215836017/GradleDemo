@@ -1,0 +1,20 @@
+
+// 任务的执行分析
+
+def Task myTask = task taskExe(type: CustomTask)
+
+myTask.doFirst {
+    println " Task 执行之前：in doFirst"
+}
+
+myTask.doLast {
+    println " Task 执行之后：in doLast"
+}
+
+class CustomTask extends DefaultTask{
+
+    @TaskAction
+    def doSelf() {
+        println " Task 执行自身：in doSelf"
+    }
+}

@@ -1,0 +1,29 @@
+
+// 多种方式创建任务
+
+def Task createTask1 = task(createTask1)
+createTask1.doLast {
+    println "直接以一个任务名字创建任务"
+}
+
+
+def Task createTask2 = task(createTask2, group: BasePlugin.BUILD_GROUP)
+createTask2.doLast {
+    println "createTask2:"
+    println "任务分组：" + createTask2.group
+}
+
+task createTask3 {
+    description("createTask3")
+    doLast {
+        println "任务描述：" + description
+    }
+}
+
+
+tasks.create('createTask4') {
+    description("createTask4")
+    doLast {
+        println "任务描述：" + description
+    }
+}

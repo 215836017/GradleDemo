@@ -1,0 +1,98 @@
+
+// 任务的 onlyIf 断言
+
+final String BUILD_APP_ALL = "all";
+final String BUILD_APP_SHOUFA = "shoufa";
+final String BUILD_APP_EXCLUDE_SHOUFA = "exclude_shoufa";
+
+task taskQQRelease{
+    doLast{
+        println "打包 QQ 应用应用市场的包"
+    }
+}
+
+task taskBaiduRelease{
+    doLast{
+        println "打包百度应用市场的包"
+    }
+}
+
+task taskHuaWeiRelease{
+    doLast{
+        println "打包华为应用市场的包"
+    }
+}
+
+task taskMiuiRelease{
+    doLast{
+        println "打包 MIUI 应用市场的包"
+    }
+}
+
+task build{
+    group BasePlugin.BUILD_GROUP
+    description "打渠道包"
+}
+
+
+build dependsOn taskQQRelease, taskBaiduRelease, taskHuaWeiRelease, taskMiuiRelease
+
+taskQQRelease.onlyIf {
+    def execute = false;
+    if(project.hasProperty("build_apps")){
+        Object buildApps = project.property("build_apps")
+        if(BUILD_APP_ALL.equals(buildApps)){
+            execute = true
+        }else{
+            execute = false
+        }
+    }else{
+        execute = false
+    }
+    execute
+}
+
+taskBaiduRelease.onlyIf {
+    def execute = false;
+    if(project.hasProperty("build_apps")){
+        Object buildApps = project.property("build_apps")
+        if(BUILD_APP_SHOUFA.equals(buildApps) || BUILD_APP_ALL.equals(buildApps)){
+            execute = true
+        }else{
+            execute = false
+        }
+    }else{
+        execute = false
+    }
+    execute
+}
+
+taskHuaWeiRelease.onlyIf{
+    def execute = false;
+    if(project.hasProperty("build_apps")){
+        Object buildApps = project.property("build_apps")
+        if(BUILD_APP_SHOUFA.equals(buildApps) || BUILD_APP_ALL.equals(buildApps)){
+            execute = true
+        }else{
+            execute = false
+        }
+    }else{
+        execute = false
+    }
+    execute
+}
+
+taskMiuiRelease.onlyIf{
+    def execute = false;
+    if(project.hasProperty("build_apps")){
+        Object buildApps = project.property("build_apps")
+        if(BUILD_APP_EXCLUDE_SHOUFA.equals(buildApps) || BUILD_APP_ALL.equals(buildApps)){
+            execute = true
+        }else{
+            execute = false
+        }
+    }else{
+        execute = false
+    }
+    execute
+}
