@@ -1,0 +1,15 @@
+
+// 学习自定义插件
+
+apply plugin: CustomPlugin
+
+class CustomPlugin implements Plugin<Project> {
+    @Override
+    void apply(Project project) {
+        project.task("taskCustomTask"){
+            doLast {
+                println "这是一个通过自定义插件方式创建的任务"
+            }
+        }
+    }
+}

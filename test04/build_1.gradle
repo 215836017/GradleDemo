@@ -1,0 +1,10 @@
+
+// 应用脚本插件
+
+apply from:'version.gradle'
+
+task testVersion{
+    doLast{
+        println "APP 版本是： ${versionName}, 版本号是：${versionCode}"
+    }
+}
