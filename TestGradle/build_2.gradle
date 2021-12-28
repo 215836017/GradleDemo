@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+// 学习 配置工程结构
+
+
+// 第一种写法：简写，使用默认配置
+sourceSets {
+    vip {
+
+    }
+}
+
+// 第二种写法：可自定义路径
+sourceSets {
+    vip {
+        java {
+            srcDir 'src/sourceSet/java'
+        }
+        resources {
+            srcDir 'src/sourceSet/resources'
+        }
+    }
+}
+
+task taskShowName{
+    sourceSets.all {
+        println name
+    }
+}
