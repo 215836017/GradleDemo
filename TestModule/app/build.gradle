@@ -5,6 +5,29 @@ plugins {
 android {
     compileSdk 31
 
+    signingConfigs {
+
+        def appStoreFile = System.getenv("STORE_FILE")
+        def appStorePassword = System.getenv("STORE_PASSWORD")
+        def appKeyAlias = System.getenv("KEY_ALIAS")
+        def appKeyPassword = System.getenv("KEY_PASSWORD")
+
+        // 当不能从环境变量中获取到签名信息的时候，就用项目中带的 debug 签名
+        if (!appStoreFile || !appStorePassword || !appKeyAlias || !appKeyPassword) {
+            appStoreFile = "debug.keystore"
+            appStorePassword = "android"
+            appKeyAlias = "androiddebugkey"
+            appKeyPassword = "android"
+        }
+
+        release {
+            storeFile file(appStoreFile)
+            storePassword appStorePassword
+            keyAlias appKeyAlias
+            keyPassword appKeyPassword
+        }
+    }
+
     defaultConfig {
         applicationId "com.cakes.testmodule"
         minSdk 21
@@ -13,10 +36,15 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        signingConfig signingConfigs.release
     }
 
     buildTypes {
         release {
+
+            signingConfig signingConfigs.release
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
